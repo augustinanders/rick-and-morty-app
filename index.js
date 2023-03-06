@@ -1,14 +1,12 @@
 import createCharacterCard from "./components/card/card.js";
 import Pagination from "./components/nav-pagination/nav-pagination.js";
+import Search from "./components/search-bar/search-bar.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
-const searchBarContainer = document.querySelector(
+/* const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
-);
-const searchBar = document.querySelector('[data-js="search-bar"]');
-const navigation = document.querySelector('[data-js="navigation"]');
-const prevButton = document.querySelector('[data-js="button-prev"]');
-const nextButton = document.querySelector('[data-js="button-next"]');
+); */
+
 const pagination = document.querySelector('[data-js="pagination"]');
 
 // States
@@ -68,16 +66,10 @@ Pagination(
   }
 );
 
+Search((seachQueryValue)=>{
+  searchQuery = seachQueryValue;
+});
+
 //search bar
 
-searchBar.addEventListener("submit", (event) => {
-  event.preventDefault();
 
-  const data = new FormData(event.target);
-  const searchInput = Object.fromEntries(data);
-  searchQuery = searchInput.query;
-
-  console.log(searchInput.query);
-  fetchCharacters();
-  event.target.reset();
-});
