@@ -30,11 +30,11 @@ async function fetchCharacters() {
     const data = await response.json();
     const characters = data.results;
     console.log(characters);
-
+    cardContainer.innerHTML = ""; // reset card Container
     // Use Character Object to create a new card for each Character
-    characters.foreach((arr) => {
-      cardContainer.innerHTML = ""; // reset card Container
-      cardContainer.innerHTML = createCharacterCard(arr.characters);
+    characters.forEach((arr) => {
+      (createCharacterCard(arr));
+      console.log(arr);
     })
 
   } catch (error) {

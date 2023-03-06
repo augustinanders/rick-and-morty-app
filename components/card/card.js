@@ -4,7 +4,6 @@ export default function createCharacterCard(character) {
     newCard.className ="card";
 
 
-
     newCard.innerHTML =`
   <div class="card__image-container">
     <img
