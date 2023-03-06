@@ -65,3 +65,15 @@ Pagination(
     fetchCharacters();
   }
 );
+
+//search bar
+
+searchBar.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const data = new FormData(event.target);
+  const searchInput = Object.fromEntries(data);
+
+  console.log(searchInput);
+  event.target.reset();
+});
