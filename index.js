@@ -17,7 +17,6 @@ export let maxPage = 1;
 export let page = 1;
 const searchQuery = "";
 
-
 const RICK_AND_MORTY_API_URL = "https://rickandmortyapi.com/api/character";
 
 export async function fetchCharacters() {
@@ -36,12 +35,11 @@ export async function fetchCharacters() {
     cardContainer.innerHTML = ""; // reset card Container
     // Use Character Object to create a new card for each Character
     characters.forEach((arr) => {
-      (createCharacterCard(arr));
-    })
+      createCharacterCard(arr);
+    });
 
     maxPage = data.info.pages;
     pagination.textContent = `${page} / ${maxPage}`;
-
   } catch (error) {
     console.error(error);
   }
@@ -49,27 +47,21 @@ export async function fetchCharacters() {
 
 fetchCharacters();
 
-
-Pagination(page, maxPage);
-
-
-
-// nextButton.addEventListener("click", () => {
-//   if (page >= maxPage) {
-//     return;
-//   }
-//   page++;
-//   console.log(page);
-//   fetchCharacters();
-// })
-
-// prevButton.addEventListener("click", () => {
-//   if (page <= 1) {
-//     return;
-//   }
-//   page--;
-
-//   console.log(page);
-//   fetchCharacters();
-
-// })
+Pagination(
+  () => {
+    if (page >= maxPage) {
+      return;
+    }
+    page++;
+    console.log(page);
+    fetchCharacters();
+  },
+  () => {
+    if (page <= 1) {
+      return;
+    }
+    page--;
+    console.log(page);
+    fetchCharacters();
+  }
+);
