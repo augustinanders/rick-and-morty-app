@@ -26,10 +26,12 @@ async function fetchCharacters() {
       console.error("API FETCH FAILED");
       return;
     }
+    // Create Character Object Array
     const data = await response.json();
     const characters = data.results;
     console.log(characters);
 
+    // Use Character Object to create a new card for each Character
     characters.foreach((arr) => {
       cardContainer.innerHTML = ""; // reset card Container
       cardContainer.innerHTML = createCharacterCard(arr.characters);
