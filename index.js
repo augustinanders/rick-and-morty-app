@@ -15,13 +15,15 @@ const pagination = document.querySelector('[data-js="pagination"]');
 
 export let maxPage = 1;
 export let page = 1;
-const searchQuery = "";
+let searchQuery = "";
 
 const RICK_AND_MORTY_API_URL = "https://rickandmortyapi.com/api/character";
 
 export async function fetchCharacters() {
   try {
-    const response = await fetch(`${RICK_AND_MORTY_API_URL}?page=${page}`);
+    const response = await fetch(
+      `${RICK_AND_MORTY_API_URL}?page=${page}&name=${searchQuery}`
+    );
 
     if (!response.ok) {
       console.error("API FETCH FAILED");
@@ -65,3 +67,17 @@ Pagination(
     fetchCharacters();
   }
 );
+
+//search bar
+
+searchBar.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const data = new FormData(event.target);
+  const searchInput = Object.fromEntries(data);
+  searchQuery = searchInput.query;
+
+  console.log(searchInput.query);
+  fetchCharacters();
+  event.target.reset();
+});
